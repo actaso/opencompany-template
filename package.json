@@ -1,0 +1,7 @@
+{
+  "name": "@opencompany/company-template",
+  "version": "0.1.0",
+  "description": "Template repository structure for OpenCompany organizations",
+  "private": true,
+  "license": "MIT"
+}

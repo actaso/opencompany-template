@@ -1,0 +1,12 @@
+# Knowledge Base
+
+This directory contains company knowledge organized by topic.
+
+Create subdirectories for different areas:
+
+- `products/` - Product documentation and specs
+- `processes/` - Standard operating procedures
+- `decisions/` - Architecture decision records
+- `customers/` - Customer information and context
+
+Files in this directory are indexed and available to agents.

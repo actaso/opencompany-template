@@ -1,0 +1,23 @@
+# Example Integration
+# This is an example integration configuration file.
+# Integration credentials are stored securely in OpenCompany, not in this file.
+
+name: Example Service
+type: api
+enabled: false
+
+# What this integration provides
+capabilities:
+  - send_messages
+  - read_data
+
+# Configuration (non-sensitive)
+config:
+  base_url: https://api.example.com
+  version: v1
+
+# Usage instructions for agents
+usage: |
+  Use this integration to interact with Example Service.
+  Call the send_message action to send messages.
+  Call the read_data action to fetch information.

@@ -1,0 +1,42 @@
+# OpenCompany Configuration
+# This file configures how OpenCompany interacts with your company repository
+
+version: 1
+
+# Organization settings (set by OpenCompany dashboard)
+# organization:
+#   id: org_xxx
+#   slug: your-company
+
+# Sync settings - what to index and when
+sync:
+  # Files to index for agent context
+  include:
+    - "*.md"
+    - "knowledge/**/*.md"
+    - "skills/**/*.md"
+    - "integrations/**/*.yaml"
+
+  # Files to exclude from indexing
+  exclude:
+    - "node_modules/**"
+    - ".git/**"
+    - "*.log"
+
+# Agent settings
+agent:
+  # Default context files loaded for every session
+  context:
+    - soul.md
+    - identity.md
+    - work/local-memory.md
+    - knowledge/general/COMPANY.md
+    - knowledge/general/STRATEGY.md
+    - knowledge/general/TEAM.md
+    - .claude/CLAUDE.md
+
+# Webhook settings (for real-time sync)
+# webhooks:
+#   on_push: true
+#   branches:
+#     - main
