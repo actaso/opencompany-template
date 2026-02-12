@@ -1,0 +1,40 @@
+# Slack Integration
+# Connect your Slack workspace to enable agent messaging capabilities.
+# Credentials are stored securely in OpenCompany Settings, not in this file.
+
+name: Slack
+type: messaging
+enabled: false
+
+# What this integration provides
+capabilities:
+  - send_messages
+  - read_channels
+  - read_users
+
+# Configuration (non-sensitive)
+config:
+  api_base: https://slack.com/api
+  # Required scopes for the Slack App
+  required_scopes:
+    - chat:write
+    - channels:read
+    - channels:history      # Read public channel messages
+  optional_scopes:
+    - groups:read
+    - groups:history        # Read private channel messages
+    - users:read
+    - files:write
+
+# Usage instructions for agents
+usage: |
+  SLACK_BOT_TOKEN is provided automatically when connected.
+  See skills/slack.md for detailed usage instructions.
+
+  Quick example:
+  ```bash
+  curl -X POST https://slack.com/api/chat.postMessage \
+    -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
+    -H "Content-Type: application/json" \
+    -d '{"channel": "general", "text": "Hello from the agent!"}'
+  ```

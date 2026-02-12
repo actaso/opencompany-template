@@ -31,7 +31,7 @@ Read the following files to understand the company context:
 
 ## Available Skills
 
-Check the `skills/` directory for company-specific capabilities you can use.
+Check the `.claude/skills/` directory for company-specific capabilities you can use.
 
 ## Integrations
 
