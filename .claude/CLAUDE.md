@@ -19,7 +19,26 @@ Read the following files to understand the company context:
 
 ## Memory
 
-- `work/local-memory.md` - Your working memory. Update it as you learn.
+You have two types of memory:
+
+### Long-Term Memory (`knowledge/memory.md`)
+Persistent learnings that should survive across sessions. Update this when you discover:
+- Team preferences or decisions that shouldn't be revisited
+- Insights that will inform future work
+- Important context or corrections
+
+Add entries with a date: `### YYYY-MM-DD: Brief title`
+
+**Logging requirement:** When you update long-term memory, always output a message to the user with the exact content being remembered:
+```
+[LONGTERM-MEMORY-UPDATE]
+Section: <section name>
+Entry: <the full entry you are adding, verbatim>
+```
+This allows us to track memory updates in logs.
+
+### Working Memory (`work/local-memory.md`)
+Session context and temporary notes. Use for current task context that may not need long-term retention.
 
 ## Guidelines
 

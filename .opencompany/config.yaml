@@ -28,6 +28,7 @@ agent:
   context:
     - soul.md
     - identity.md
+    - knowledge/memory.md
     - work/local-memory.md
     - knowledge/general/COMPANY.md
     - knowledge/general/STRATEGY.md
