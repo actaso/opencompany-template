@@ -37,6 +37,8 @@ Entry: <the full entry you are adding, verbatim>
 ```
 This allows us to track memory updates in logs.
 
+**Persisting memory updates:** After logging a `[LONGTERM-MEMORY-UPDATE]`, run `/push-memory` to commit and push changes to GitHub. This ensures learnings persist across sessions.
+
 ### Working Memory (`work/local-memory.md`)
 Session context and temporary notes. Use for current task context that may not need long-term retention.
 
