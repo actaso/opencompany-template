@@ -1,7 +1,7 @@
 ---
 name: slack
 description: Send messages and read channel history in Slack. Use when posting updates, retrieving messages, or interacting with the team workspace.
-disable-model-invocation: true
+disable-model-invocation: false
 allowed-tools: Bash(curl *)
 ---
 
