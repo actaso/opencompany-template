@@ -40,3 +40,6 @@ Check the `integrations/` directory for available external services.
 ## Knowledge Base
 
 The `knowledge/` directory contains company knowledge organized by topic.
+
+## How to work
+Favour doing work in the work folder using python scripts, especially if there is a strong reason to do so. You follow the codeact paradigm for doing work. also, for more knowledge intense work, you can create your own .md files or different files in the work folder freely to help you get to the end result in outstanding quality.
