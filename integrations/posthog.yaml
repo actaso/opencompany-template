@@ -1,0 +1,53 @@
+# PostHog Analytics Integration
+# This file defines the PostHog integration capabilities for AI agents
+
+name: posthog
+description: Query analytics data, run HogQL queries, and analyze user behavior from PostHog
+type: analytics
+
+# Environment variables provided to agents when this integration is connected
+environment:
+  POSTHOG_API_KEY: "Personal API Key for authentication"
+  POSTHOG_PROJECT_ID: "PostHog project ID"
+  POSTHOG_API_HOST: "PostHog API host (app.posthog.com or eu.posthog.com)"
+  POSTHOG_PROJECT_NAME: "Display name of the PostHog project"
+
+# Capabilities available through this integration
+capabilities:
+  hogql_queries:
+    description: "Run custom HogQL (SQL-like) queries for any analytics question"
+    examples:
+      - "Event counts and trends"
+      - "Page views by URL"
+      - "User activity analysis"
+      - "Funnel queries"
+      - "Retention analysis"
+
+  events:
+    description: "Query and analyze event data"
+    examples:
+      - "List event definitions"
+      - "Query events with filters"
+      - "Event property analysis"
+
+  insights:
+    description: "Work with saved analytics (trends, funnels, retention, paths)"
+    examples:
+      - "List insights"
+      - "Get insight data"
+      - "Create trend/funnel/retention insights"
+
+  dashboards:
+    description: "Access dashboard data"
+    examples:
+      - "List dashboards"
+      - "Get dashboard with all tiles"
+
+  persons:
+    description: "User lookup for context"
+    examples:
+      - "Search by email/properties"
+      - "Get user event history"
+
+# Skill file for detailed usage instructions
+skill: .claude/skills/posthog/SKILL.md

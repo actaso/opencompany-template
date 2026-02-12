@@ -14,7 +14,6 @@ sync:
   include:
     - "*.md"
     - "knowledge/**/*.md"
-    - "skills/**/*.md"
     - "integrations/**/*.yaml"
 
   # Files to exclude from indexing
