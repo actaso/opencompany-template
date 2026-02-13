@@ -15,6 +15,17 @@ allowed-tools: Bash(curl *)
 - `POSTHOG_PROJECT_ID` environment variable must be set
 - `POSTHOG_API_HOST` environment variable must be set (e.g., `https://app.posthog.com`)
 
+## Debug Variables
+
+Before running queries, verify your environment variables are set:
+
+```bash
+# Verify your PostHog environment variables are set
+echo "Host: ${POSTHOG_API_HOST:-NOT SET}"
+echo "Project: ${POSTHOG_PROJECT_ID:-NOT SET}"
+echo "API Key: ${POSTHOG_API_KEY:+SET}"
+```
+
 ## HogQL Queries
 
 HogQL is PostHog's SQL-like query language. It's the most flexible way to analyze your data.
@@ -22,8 +33,8 @@ HogQL is PostHog's SQL-like query language. It's the most flexible way to analyz
 ### Simple Event Count
 
 ```bash
-curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/query/" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY" \
+curl -X POST "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/query/" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
     "query": {
@@ -36,8 +47,8 @@ curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/query/" \
 ### Events by Day
 
 ```bash
-curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/query/" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY" \
+curl -X POST "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/query/" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
     "query": {
@@ -50,8 +61,8 @@ curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/query/" \
 ### Page Views by URL
 
 ```bash
-curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/query/" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY" \
+curl -X POST "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/query/" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
     "query": {
@@ -64,8 +75,8 @@ curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/query/" \
 ### User Activity Analysis
 
 ```bash
-curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/query/" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY" \
+curl -X POST "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/query/" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
     "query": {
@@ -78,8 +89,8 @@ curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/query/" \
 ### Funnel Analysis
 
 ```bash
-curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/query/" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY" \
+curl -X POST "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/query/" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
     "query": {
@@ -94,22 +105,22 @@ curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/query/" \
 ### List Event Definitions
 
 ```bash
-curl "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/event_definitions/" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY"
+curl "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/event_definitions/" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}"
 ```
 
 ### Query Events with Filters
 
 ```bash
-curl "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/events/?event=\$pageview&limit=10" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY"
+curl "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/events/?event=%24pageview&limit=10" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}"
 ```
 
 ### Get Event Properties
 
 ```bash
-curl "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/property_definitions/?type=event" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY"
+curl "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/property_definitions/?type=event" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}"
 ```
 
 ## Insights API
@@ -117,22 +128,22 @@ curl "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/property_definitions/?t
 ### List All Insights
 
 ```bash
-curl "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/insights/" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY"
+curl "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/insights/" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}"
 ```
 
 ### Get Specific Insight
 
 ```bash
-curl "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/insights/123/" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY"
+curl "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/insights/123/" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}"
 ```
 
 ### Create a Trend Insight
 
 ```bash
-curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/insights/" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY" \
+curl -X POST "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/insights/" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Daily Active Users",
@@ -147,8 +158,8 @@ curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/insights/" \
 ### Create a Funnel Insight
 
 ```bash
-curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/insights/" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY" \
+curl -X POST "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/insights/" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Signup Funnel",
@@ -169,15 +180,15 @@ curl -X POST "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/insights/" \
 ### List Dashboards
 
 ```bash
-curl "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/dashboards/" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY"
+curl "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/dashboards/" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}"
 ```
 
 ### Get Dashboard with Tiles
 
 ```bash
-curl "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/dashboards/123/" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY"
+curl "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/dashboards/123/" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}"
 ```
 
 ## Persons API
@@ -185,22 +196,22 @@ curl "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/dashboards/123/" \
 ### Search Persons by Email
 
 ```bash
-curl "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/persons/?search=user@example.com" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY"
+curl "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/persons/?search=user@example.com" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}"
 ```
 
 ### Get Person by Distinct ID
 
 ```bash
-curl "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/persons/?distinct_id=user-123" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY"
+curl "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/persons/?distinct_id=user-123" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}"
 ```
 
 ### Get Person's Event History
 
 ```bash
-curl "$POSTHOG_API_HOST/api/projects/$POSTHOG_PROJECT_ID/events/?person_id=abc-123&limit=50" \
-  -H "Authorization: Bearer $POSTHOG_API_KEY"
+curl "${POSTHOG_API_HOST}/api/projects/${POSTHOG_PROJECT_ID}/events/?person_id=abc-123&limit=50" \
+  -H "Authorization: Bearer ${POSTHOG_API_KEY}"
 ```
 
 ## Environment Variables
