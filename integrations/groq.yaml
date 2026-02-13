@@ -1,0 +1,39 @@
+# Groq Integration
+# This file defines the Groq speech-to-text integration capabilities for AI agents
+
+name: groq
+description: Transcribe audio using Groq's Whisper-based speech-to-text API
+type: ai
+
+# Environment variables provided to agents when this integration is connected
+environment:
+  GROQ_API_KEY: "API key for authentication"
+  GROQ_TRANSCRIPTION_MODEL: "Model to use (default: whisper-large-v3-turbo)"
+
+# Capabilities available through this integration
+capabilities:
+  transcription:
+    description: "Convert audio to text with timestamps"
+    examples:
+      - "Transcribe audio files"
+      - "Get word-level timestamps"
+      - "Transcribe Instagram Reels audio"
+      - "Process MP3, MP4, WAV, WebM, and other formats"
+
+  timestamps:
+    description: "Get precise timing information"
+    examples:
+      - "Segment-level timestamps"
+      - "Word-level timestamps"
+      - "SRT/VTT subtitle generation"
+
+  formats:
+    description: "Supported audio formats"
+    examples:
+      - "MP3, MP4, MPEG, MPGA"
+      - "M4A, WAV, WebM"
+      - "OGG, FLAC"
+      - "Files up to 25MB"
+
+# Skill file for detailed usage instructions
+skill: .claude/skills/transcribe-audio/SKILL.md
