@@ -1,0 +1,46 @@
+# Apify Integration
+# This file defines the Apify integration capabilities for AI agents
+
+name: apify
+description: Run Apify actors for web scraping including Instagram Reels
+type: scraping
+
+# Environment variables provided to agents when this integration is connected
+environment:
+  APIFY_API_TOKEN: "API token for authentication"
+  APIFY_ACCOUNT_USERNAME: "Apify account username (informational)"
+
+# Capabilities available through this integration
+capabilities:
+  actors:
+    description: "Run Apify actors (web scrapers and automation tools)"
+    examples:
+      - "Instagram Reel Scraper"
+      - "Instagram Profile Scraper"
+      - "Web Scraper"
+      - "Google Search Scraper"
+
+  datasets:
+    description: "Access and download scraped data"
+    examples:
+      - "Get dataset items"
+      - "Export results as JSON"
+      - "Paginate through large datasets"
+
+  runs:
+    description: "Manage actor runs"
+    examples:
+      - "Start actor runs (sync or async)"
+      - "Check run status"
+      - "Get run logs"
+      - "Abort running actors"
+
+  storage:
+    description: "Access Apify storage"
+    examples:
+      - "Key-value stores"
+      - "Request queues"
+      - "Datasets"
+
+# Skill file for detailed usage instructions
+skill: .claude/skills/apify/SKILL.md
