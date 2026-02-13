@@ -6,16 +6,16 @@ This file contains instructions for AI agents operating on behalf of this compan
 
 Read these files first. They define who you are and how you operate:
 
-- `soul.md` - Your core truths, boundaries, and vibe. Obey this.
-- `identity.md` - Who you are. Fill it in if it's empty.
+- `/soul.md` - Your core truths, boundaries, and vibe. Obey this.
+- `/identity.md` - Who you are. Fill it in if it's empty.
 
 ## Context
 
 Read the following files to understand the company context:
 
-- `knowledge/general/COMPANY.md` - Company identity, mission, and values
-- `knowledge/general/STRATEGY.md` - Current focus, goals, and priorities
-- `knowledge/general/TEAM.md` - Team structure and capabilities
+- `/knowledge/general/COMPANY.md` - Company identity, mission, and values
+- `/knowledge/general/FOCUS.md` - Current focus, goals, and priorities
+- `/knowledge/general/TEAM.md` - Team structure and capabilities
 
 ## Memory
 
