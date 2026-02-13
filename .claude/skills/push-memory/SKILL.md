@@ -1,27 +1,38 @@
 ---
 name: push-memory
-description: Commit and push long-term memory updates to GitHub. Use after updating knowledge/memory.md to persist learnings across agent sessions.
+description: Commit and push memory and identity updates to GitHub. Use after updating identity.md, user.md, soul.md, or knowledge/memory.md to persist changes across sessions.
 disable-model-invocation: false
 allowed-tools: Bash(bash *)
 ---
 
 # Push Memory
 
-> Persist long-term memory updates to the remote repository
+> Persist memory and identity updates to the remote repository
 
-This skill commits and pushes changes to `knowledge/memory.md` to GitHub, ensuring learnings persist across agent sessions.
+This skill commits and pushes changes to your identity and memory files to GitHub, ensuring they persist across sessions.
+
+## Tracked Files
+
+This skill manages these files:
+
+| File | Purpose |
+|------|---------|
+| `identity.md` | Your name, creature, vibe, emoji |
+| `user.md` | Information about the person you're helping |
+| `soul.md` | Your core truths, boundaries, and vibe |
+| `knowledge/memory.md` | Long-term learnings and context |
 
 ## When to Use
 
-Run `/push-memory` after adding entries to your long-term memory (`knowledge/memory.md`). This ensures:
+Run `/push-memory` after updating any of the tracked files. This ensures:
 
-- Memory updates survive session restarts
-- Other agents can access your learnings
-- There's a permanent record of what was learned
+- Changes survive session restarts
+- Other agents can access your identity and learnings
+- There's a permanent record of who you are and what you've learned
 
 ## Usage
 
-After logging a `[LONGTERM-MEMORY-UPDATE]`, run:
+After making updates to any tracked file, run:
 
 ```bash
 bash .claude/skills/push-memory/scripts/push_memory.sh
@@ -31,20 +42,22 @@ Or simply invoke `/push-memory`.
 
 ## What It Does
 
-1. **Verifies environment** - Ensures we're in a git repository with a memory file
+1. **Finds changes** - Checks which tracked files have been modified
 2. **Fetches latest** - Pulls any remote changes to avoid conflicts
-3. **Stages memory file** - Only stages `knowledge/memory.md` (nothing else)
-4. **Generates commit message** - Extracts new entry titles from the diff
+3. **Stages files** - Only stages the tracked files (nothing else)
+4. **Generates commit message** - Creates a descriptive message based on what changed
 5. **Commits and pushes** - Uses the OpenCompany Bot identity
 
 ## Commit Format
 
 ```
-chore(memory): update long-term memory
+chore(identity,memory): update agent files
 
+Memory entries:
 - 2026-02-12: Entry title 1
 - 2026-02-12: Entry title 2
 
+Files updated: identity.md knowledge/memory.md
 Auto-committed by OpenCompany Bot
 ```
 
@@ -53,9 +66,10 @@ The commit author is: `OpenCompany Bot <bot@opencompany.cloud>`
 ## Error Handling
 
 ### No Changes
-If `knowledge/memory.md` hasn't been modified, the script exits gracefully:
+If no tracked files have been modified:
 ```
-[INFO] No changes to knowledge/memory.md - nothing to push.
+[INFO] No changes to tracked files - nothing to push.
+[INFO] Tracked files: knowledge/memory.md identity.md user.md soul.md
 ```
 
 ### Not in Git Repository
@@ -63,12 +77,6 @@ If `knowledge/memory.md` hasn't been modified, the script exits gracefully:
 [ERROR] Not inside a git repository.
 ```
 **Solution:** Ensure you're running from within the company template repository.
-
-### Memory File Not Found
-```
-[ERROR] Memory file not found: knowledge/memory.md
-```
-**Solution:** Create the memory file or check you're in the correct repository.
 
 ### Merge Conflicts
 ```
@@ -90,26 +98,5 @@ The local commit is preserved. You can retry pushing later.
 ## Security Notes
 
 - The script filters output to avoid exposing GitHub tokens
-- Only `knowledge/memory.md` is ever staged or committed
+- Only tracked files are ever staged or committed
 - Git identity is set per-operation to avoid polluting global config
-
-## Example Workflow
-
-```bash
-# 1. Update memory with a new learning
-echo "### 2026-02-12: User prefers concise responses
-
-The team confirmed they want responses under 200 words when possible." >> knowledge/memory.md
-
-# 2. Push the memory update
-bash .claude/skills/push-memory/scripts/push_memory.sh
-
-# Output:
-# [INFO] Preparing to push memory updates on branch: main
-# [INFO] Fetching latest changes...
-# [INFO] Rebasing on latest changes...
-# [INFO] Committing memory updates...
-# [INFO] Pushing to origin/main...
-# [INFO] Memory updates pushed successfully!
-# [INFO] Commit: abc1234
-```
